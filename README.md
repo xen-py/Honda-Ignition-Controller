@@ -1,5 +1,5 @@
 # Honda-Ignition-Controller
-Designed on my 1997 Honda Prelude with an H22A + P28 ECU over the course of 4 weeks
+Designed on my 1997 Honda Prelude with an H22A + P28 ECU over the course of 5 weeks
 
 Arduino - P28
 Pin 2 - A21 5v 10k ohm pullup 
