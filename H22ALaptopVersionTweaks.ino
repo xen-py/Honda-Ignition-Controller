@@ -85,7 +85,7 @@ ISR(INT0_vect)
 {
     unsigned long now = micros();
 
-    // Startup guard applies here too -- ignore CYP edges during
+    // Startup guard applies here   -- ignore CYP edges during
     // the same settling window as A21.
     //if (millis() - boot_time < STARTUP_GUARD_MS)
     //{
@@ -116,10 +116,18 @@ ISR(INT0_vect)
     }
     else
     {
-        if (phase != 0)
-        {
-            flag_cyp_disagree = true; // printed from loop(), same reasoning
-            cyp_hit_pending = true;
+        if(!synced){
+            if (phase == 0)
+            {
+                flag_cyp_disagree = true; // printed from loop(), same reasoning
+                cyp_hit_pending = true;
+            }
+        }else{
+            if (phase != 0)
+            {
+                flag_cyp_disagree = true; // printed from loop(), same reasoning
+                cyp_hit_pending = true;
+            }
         }
 
     }
@@ -356,7 +364,7 @@ void loop()
     {
         last_status = millis();
         Serial.print(F("[STATUS] synced="));
-        Serial.print(synced ? F("YES") : F("NO"));
+        Serial.println(synced ? F("YES") : F("NO"));
         //Serial.print(F("  phase="));
         //Serial.print(phase == 0 ? F("A") : F("B"));
 
